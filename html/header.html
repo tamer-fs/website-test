@@ -1,0 +1,91 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #040F0F;
+        padding: 10px;
+        position: relative;
+    }
+
+    header > h2 {
+        display: inline-block;
+        color: white;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 2rem;
+        font-weight: 500;
+    }
+
+    header > nav {
+        display: inline-block;
+        position: absolute;
+        right: 50px;
+        top: 32.5%;
+    }
+
+    header nav > a {
+        display: inline-block;
+        color: white;
+        text-decoration: none;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        margin-left: 50px;
+        padding-bottom: 5px;
+    }
+
+    .hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    }
+
+    .hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #677DB7;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+    }
+
+    .hover-underline-animation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    }
+
+    .button {
+        background-color: #677DB7;
+        padding: 7px;
+        margin-top: -7px;
+        border-radius: 5px;
+        transition: .5s ease;
+    }
+
+    .button:hover {
+        background-color: white;
+        color: black;
+        transition: .5s ease;
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <header>
+        <h2>Elox Tech</h2>
+        <nav>
+            <a href="login.php" class="button">Log in</a>
+            <a href="index.php" class="hover-underline-animation">Register</a>
+            <a href="home.php" class="hover-underline-animation">Home</a>
+            <a href="about.php" class="hover-underline-animation">About</a>
+            <a href="pricing.php" class="hover-underline-animation">Pricing</a>
+        </nav>
+    </header>
+</body>
+</html>
