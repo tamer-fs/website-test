@@ -239,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["username"] = $username;
                         $_SESSION["logged_in"] = true;
                         echo '<script type="text/javascript">username_free();</script>';
-                        echo '<script type="text/javascript">change_page("home.php");</script>';
+                        echo '<script type="text/javascript">change_page("php/home.php");</script>';
                     } catch (mysqli_sql_exception) {
 
                         echo '<script type="text/javascript">username_taken();</script>';
