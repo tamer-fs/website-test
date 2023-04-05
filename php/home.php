@@ -1,12 +1,13 @@
 <?php
-include("../html/header.html");
 session_start();
+include("../html/header.html");
 
 if ($_SESSION['logged_in']) {
     $username = $_SESSION["username"];
 } else {
     $username = "";
 }
+$id = $_SESSION['id'];
 ?>
 
 <style>
@@ -88,6 +89,53 @@ if ($_SESSION['logged_in']) {
         transform: scaleX(1);
         transform-origin: bottom left;
     }
+
+    .scroller {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 50px;
+    }
+
+    .scroller>.widget {
+        width: 22.5vw;
+        aspect-ratio: 1/1.2;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        border-radius: 15px;
+        position: relative;
+        padding: 15px;
+        transition: .3s ease;
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.35);
+    }
+
+    .scroller>.widget:hover {
+        width: 22.5vw;
+        aspect-ratio: 1/1.2;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        position: relative;
+        padding: 15px;
+        transition: .3s ease;
+        cursor: pointer;
+    }
+
+    .scroller .widget>span {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 1.6rem;
+    }
+
+    .scroller .widget>h3 {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        display: block;
+        border-bottom: 1px solid black;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    @media (max-width: 727px) {
+        .top-line .input-sect>input {
+            width: 300px;
+        }
+    }
 </style>
 
 <!DOCTYPE html>
@@ -103,11 +151,26 @@ if ($_SESSION['logged_in']) {
 </head>
 
 <body>
-    <a href="#" class="hover-underline-animation" id="account-link"><?php echo $_SESSION["username"]; ?></a>
+    <a href="user.php" class="hover-underline-animation" id="account-link"><?php echo $_SESSION["username"]; ?></a>
     <section class="top-line">
         <div class="input-sect">
             <input type="text" placeholder="What are you looking for?">
             <img class="search-icon" src="../assets/images/searchicon.png" alt="">
+        </div>
+    </section>
+
+    <section class="scroller">
+        <div class="widget">
+            <span>Moldable mouse</span>
+            <h3>$45,12</h3>
+        </div>
+
+        <div class="widget">
+
+        </div>
+
+        <div class="widget">
+
         </div>
     </section>
 </body>
@@ -115,5 +178,4 @@ if ($_SESSION['logged_in']) {
 </html>
 
 <?php
-include("../html/footer.html");
 ?>

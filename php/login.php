@@ -1,7 +1,7 @@
 <?php
+session_start();
 include("../html/header.html");
 include("database.php");
-session_start();
 ?>
 
 <style>
@@ -124,6 +124,16 @@ session_start();
             element.style.display = "block";
         }
 
+        function email_not_found() {
+            var element = document.getElementById("rejected-email");
+            element.style.display = "block";
+        }
+
+        function email_found() {
+            var element = document.getElementById("rejected-email");
+            element.style.display = "none";
+        }
+
         function accept_login() {
             var element = document.getElementById("rejected-match");
             element.style.display = "none";
@@ -154,6 +164,9 @@ session_start();
         <div class="reject-match-div" id="rejected-match">
             <p>The email address and password dont match.</p>
         </div>
+        <div class="reject-match-div" id="rejected-email">
+            <p>There doesn't exist an account on this email address, try signing in first.</p>
+        </div>
     </form>
 
 
@@ -166,18 +179,31 @@ include('../html/footer.html');
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     $email = $_POST["email"];
     $pass  = $_POST["pass"];
-    if (!empty($email) && !empty($pass)) {
-        $sql_query = "SELECT password, user FROM users WHERE email='{$email}'";
-        $query = mysqli_query($conn, $sql_query);
-        $value = mysqli_fetch_row($query);
-        if (password_verify($pass, $value[0])) {
-            $_SESSION["username"] = $value[1];
-            $_SESSION["logged_in"] = true;
-            echo '<script type="text/javascript">accept_login();</script>';
-            echo '<script type="text/javascript">change_page("home.php");</script>';
-        } else {
-            echo '<script type="text/javascript">reject_login();</script>';
+    $sql_email_check = "SELECT email FROM users WHERE email = '{$email}'";
+    $email_check_result = mysqli_query($conn, $sql_email_check);
+    if (mysqli_num_rows($email_check_result) == 1) {
+        echo '<script type="text/javascript">email_found();</script>';
+        if (!empty($email) && !empty($pass)) {
+            $sql_query = "SELECT password, user FROM users WHERE email='{$email}'";
+            $query = mysqli_query($conn, $sql_query);
+            $value = mysqli_fetch_row($query);
+            if (password_verify($pass, $value[0])) {
+                $_SESSION["username"] = $value[1];
+                $_SESSION['email'] = $email;
+                $_SESSION["logged_in"] = true;
+                $username = $email;
+                $find_id_query = "SELECT id FROM users WHERE email = '{$username}'";
+                $id_result = mysqli_query($conn, $find_id_query);
+                $id = mysqli_fetch_row($id_result);
+                $_SESSION["id"] = $id;
+                echo '<script type="text/javascript">accept_login();</script>';
+                echo '<script type="text/javascript">change_page("home.php");</script>';
+            } else {
+                echo '<script type="text/javascript">reject_login();</script>';
+            }
         }
+    } else {
+        echo '<script type="text/javascript">email_not_found();</script>';
     }
 }
 ?>

@@ -70,22 +70,92 @@
         color: black;
         transition: .5s ease;
     }
+
+    .dropdown {
+        width: 100vw;
+    }
+
+    .dropdown > .drop-btn{
+        background-color: white;
+        width: 35px;
+        border-radius: 30px;
+        padding: 5px;
+        display: none;
+    }
+    .dropdown>.drop-box {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0px;
+        left: -200vw;
+        background-color: #040F0F;
+        z-index: 1;
+        text-align: center;
+        transition: .5s ease;
+    }
+    .dropdown .drop-box > a {
+        color: white;
+        text-decoration: none;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        display: block;
+        padding: 15 0px;
+    }
+
+    .dropdown .drop-box > .button {
+        position: fixed;
+        width: 100vw;
+        bottom: 0px;
+    }
+
+    @media(max-width: 864px) {
+        header nav > a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-left: 25px;
+            padding-bottom: 5px;
+        }
+    }
+
+    @media(max-width: 727px) {
+        header > nav {
+            display: none;
+        }
+        .dropdown > .drop-btn {
+            display: inline-block;
+            position: absolute;
+            top: 6px;
+            right: 6px;
+        }
+    }
 </style>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="../js/toggleMenu.js"></script>
 </head>
 <body>
     <header>
         <h2>Elox Tech</h2>
         <nav>
             <a href="login.php" class="button">Log in</a>
-            <a href="../index.php" class="hover-underline-animation">Register</a>
+            <a href="index.php" class="hover-underline-animation">Register</a>
             <a href="home.php" class="hover-underline-animation">Home</a>
             <a href="about.php" class="hover-underline-animation">About</a>
             <a href="pricing.php" class="hover-underline-animation">Pricing</a>
         </nav>
+        <div class="dropdown">
+            <img class="drop-btn" src="../assets/images/menu.png" onclick="toggle_menu()" alt="">
+            <div class="drop-box" id="side-menu" onclick="toggle_menu()">
+                <a href="login.php" class="button">Log in</a>
+                <a href="index.php" class="hover-underline-animation">Register</a>
+                <a href="home.php" class="hover-underline-animation">Home</a>
+                <a href="about.php" class="hover-underline-animation">About</a>
+                <a href="pricing.php" class="hover-underline-animation">Pricing</a>
+            </div>
+        </div>
     </header>
 </body>
 </html>

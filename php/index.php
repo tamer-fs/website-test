@@ -1,7 +1,7 @@
 <?php
+session_start();
 include("../html/header.html");
 include("database.php");
-session_start();
 $user_feedback = "";
 ?>
 
@@ -238,8 +238,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         mysqli_query($conn, $sql_query);
                         $_SESSION["username"] = $username;
                         $_SESSION["logged_in"] = true;
+                        $username = $email;
+                        $find_id_query = "SELECT id FROM users WHERE email = '{$username}'";
+                        $id_result = mysqli_query($conn, $find_id_query);
+                        $id = mysqli_fetch_row($id_result);
                         echo '<script type="text/javascript">username_free();</script>';
-                        echo '<script type="text/javascript">change_page("php/home.php");</script>';
+                        echo '<script type="text/javascript">change_page("home.php");</script>';
                     } catch (mysqli_sql_exception) {
 
                         echo '<script type="text/javascript">username_taken();</script>';
