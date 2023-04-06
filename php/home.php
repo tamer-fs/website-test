@@ -2,12 +2,14 @@
 session_start();
 include("../html/header.html");
 
-if ($_SESSION['logged_in']) {
-    $username = $_SESSION["username"];
-} else {
-    $username = "";
+if (session_status() === PHP_SESSION_ACTIVE) {
+    if ($_SESSION['logged_in']) {
+        $username = $_SESSION["username"];
+    } else {
+        $username = "";
+    }
+    $id = $_SESSION['id'];
 }
-$id = $_SESSION['id'];
 ?>
 
 <style>

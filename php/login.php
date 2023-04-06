@@ -107,6 +107,23 @@ include("database.php");
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-weight: lighter;
     }
+
+    @media (max-width: 650px) {
+        section {
+            width: 200px;
+            height: 400px;
+            margin-top: 50px;
+        }
+
+        .text {
+            bottom: 75px;
+        }
+
+        #toggle-image {
+            left: 180px;
+            top: 77.5px;
+        }
+    }
 </style>
 
 <!DOCTYPE html>

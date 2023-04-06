@@ -1,8 +1,8 @@
 <?php
 session_start();
+$user_feedback = "";
 include("../html/header.html");
 include("database.php");
-$user_feedback = "";
 ?>
 
 <style>
@@ -120,6 +120,35 @@ $user_feedback = "";
         border-radius: 10px;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-weight: lighter;
+    }
+
+    @media (max-width: 650px) {
+        section {
+            width: 200px;
+            height: 550px;
+            margin-top: 50px;
+        }
+
+        .text {
+            bottom: 120px;
+        }
+
+        #toggle-image {
+            left: 180px;
+            top: 119px;
+        }
+
+        #submit-btn {
+            flex: 1 0 40px;
+            background-color: #677DB7;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            height: 40px;
+            transition: .3s ease;
+            cursor: pointer;
+            margin-top: 120px;
+        }
     }
 </style>
 
